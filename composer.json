@@ -1,0 +1,28 @@
+{
+  "name": "human018/laravel-aus-post",
+  "description": "Laravel integration with Australia Post API",
+  "type": "library",
+  "require": {
+    "laravel/framework": "^9.0|^10.0",
+    "php": "^8.1"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Human018\\LaravelAusPost\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Human018\\LaravelAusPost\\Providers\\LaravelAusPostServiceProvider"
+      ]
+    }
+  },
+  "authors": [
+    {
+      "name": "Simon Woodard",
+      "email": "design@simonwoodard.com.au"
+    }
+  ]
+}
