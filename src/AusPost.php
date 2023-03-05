@@ -5,6 +5,7 @@ namespace Human018\LaravelAusPost;
 use Human018\LaravelAusPost\Client\Http;
 use Human018\LaravelAusPost\Exceptions\InvalidForDomesticServiceException;
 use Human018\LaravelAusPost\Exceptions\InvalidForInternationalServiceException;
+use Illuminate\Support\Str;
 
 class AusPost
 {
@@ -12,6 +13,7 @@ class AusPost
     private static $target;
     private $url;
     private $query;
+    private $service;
     private $measurements = 'mm';
     private $weights = 'g';
 
@@ -116,6 +118,7 @@ class AusPost
     public function usingService($serviceCode)
     {
         $this->query['service_code'] = $serviceCode;
+        $this->service = 'Human018\LaravelAusPost\Services\\'.Str::studly(strtolower($serviceCode));
         return $this;
     }
 
@@ -231,6 +234,13 @@ class AusPost
                 $this->query['weight'] = $this->query['weight'] / 1000;
         }
 
-        return $this->client->get($this->url, $this->query);
+        $response = $this->client->get($this->url, $this->query);
+        $response = $response->json();
+        if ($this->service) {
+            $service = new $this->service();
+            $response['service'] = $service->toArray();
+        }
+
+        return $response;
     }
 }
