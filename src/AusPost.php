@@ -12,7 +12,12 @@ class AusPost
     private $client;
     private static $target;
     private $url;
-    private $query;
+    private $query = [
+        'weight' => 0,
+        'width' => 0,
+        'length' => 0,
+        'height' => 0
+    ];
     private $service;
     private $measurements = 'mm';
     private $weights = 'g';
