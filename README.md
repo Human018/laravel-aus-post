@@ -14,7 +14,7 @@ IMPORTANT: This package is a work in progress.
 
 Use the package manager [composer](https://getcomposer.org/) to install Laravel Australia Post Package.
 
-```compose require human018/laravel-aus-post```
+```composer require human018/laravel-aus-post```
 
 After installation add your Australia Post API key to your .env file
 
